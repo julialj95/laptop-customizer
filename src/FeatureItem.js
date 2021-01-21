@@ -20,7 +20,6 @@ class FeatureItem extends React.Component {
       <div className="feature__item">
         <input
           type="radio"
-          // key={itemHash}
           id={itemHash}
           className="feature__option"
           name={slugify(feature)}

@@ -19,7 +19,6 @@ class CartComponent extends React.Component {
         />
       );
     });
-    // console.log(summary);
     return (
       <section className="main__summary">
         <h2>Your cart</h2>
@@ -30,5 +29,3 @@ class CartComponent extends React.Component {
   }
 }
 export default CartComponent;
-
-//send down currency prop//
