@@ -8,9 +8,9 @@ class CartComponent extends React.Component {
     const summary = Object.keys(selected).map((feature, idx) => {
       const featureHash = feature + "-" + idx;
       const selectedOption = selected[feature];
-
       return (
         <CartSegment
+          key={idx}
           selected={selected}
           name={selectedOption.name}
           cost={selectedOption.cost}
@@ -19,12 +19,12 @@ class CartComponent extends React.Component {
         />
       );
     });
-
+    // console.log(summary);
     return (
       <section className="main__summary">
         <h2>Your cart</h2>
         {summary}
-        <CartTotal />
+        <CartTotal selected={selected} />
       </section>
     );
   }

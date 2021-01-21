@@ -17,10 +17,10 @@ class FeatureItem extends React.Component {
       updateFeature,
     } = this.props;
     return (
-      <div key={itemHash} className="feature__item">
+      <div className="feature__item">
         <input
           type="radio"
-          key={itemHash}
+          // key={itemHash}
           id={itemHash}
           className="feature__option"
           name={slugify(feature)}

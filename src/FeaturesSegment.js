@@ -6,18 +6,17 @@ import FEATURES from "./FeaturesStore";
 class FeaturesSegment extends React.Component {
   render() {
     const { updateFeature, selected, feature } = this.props;
-    console.log(feature);
-    const options = FEATURES[feature].map((item) => {
+    const options = FEATURES[feature].map((item, idx) => {
       const itemHash = slugify(JSON.stringify(item));
-      console.log(itemHash);
       return (
         <FeatureItem
-          itemHash={itemHash}
-          onChange={updateFeature}
+          key={idx}
+          updateFeature={updateFeature}
           itemName={item.name}
           selected={selected}
           feature={feature}
           item={item}
+          itemHash={itemHash}
         />
       );
     });

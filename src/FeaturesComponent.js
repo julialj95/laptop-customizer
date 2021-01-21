@@ -1,12 +1,12 @@
 import React from "react";
 import FeaturesSegment from "./FeaturesSegment";
-import FEATURES from "./FeaturesStore";
+// import FEATURES from "./FeaturesStore";
 
 class FeaturesComponent extends React.Component {
   render() {
-    const { selected, updateFeature } = this.props;
+    const { selected, updateFeature, featureOptions } = this.props;
 
-    const features = Object.keys(FEATURES).map((feature, idx) => {
+    const features = Object.keys(featureOptions).map((feature, idx) => {
       const featureHash = feature + "-" + idx;
       return (
         <fieldset className="feature" key={featureHash}>
@@ -14,8 +14,9 @@ class FeaturesComponent extends React.Component {
             <h3>{feature}</h3>
           </legend>
           <FeaturesSegment
+            key={featureHash}
             selected={selected}
-            onChange={updateFeature}
+            updateFeature={updateFeature}
             feature={feature}
             // features={features}
           />
