@@ -3,6 +3,7 @@ import "./App.css";
 import AppHeader from "./AppHeader";
 import FeaturesComponent from "./FeaturesComponent";
 import CartComponent from "./CartComponent";
+import FEATURES from "./FeaturesStore";
 
 class App extends Component {
   constructor(props) {
@@ -45,7 +46,7 @@ class App extends Component {
           <FeaturesComponent
             selected={this.state.selected}
             updateFeature={this.updateFeature}
-            featureOptions={this.props.features}
+            featureOptions={FEATURES}
           />
           <CartComponent selected={this.state.selected} />
         </main>

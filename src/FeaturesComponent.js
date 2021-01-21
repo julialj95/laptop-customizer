@@ -18,7 +18,6 @@ class FeaturesComponent extends React.Component {
             selected={selected}
             updateFeature={updateFeature}
             feature={feature}
-            // features={features}
           />
         </fieldset>
       );
