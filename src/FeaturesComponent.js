@@ -1,6 +1,5 @@
 import React from "react";
 import FeaturesSegment from "./FeaturesSegment";
-// import FEATURES from "./FeaturesStore";
 
 class FeaturesComponent extends React.Component {
   render() {
