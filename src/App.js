@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
 import AppHeader from "./AppHeader";
-import ProductsComponent from "./FeaturesComponent";
+import FeaturesComponent from "./FeaturesComponent";
 import CartComponent from "./CartComponent";
 
+// const USCurrencyFormat = new Intl.NumberFormat("en-US", {
+//   style: "currency",
+//   currency: "USD",
+// });
 class App extends Component {
   constructor(props) {
     super(props);
@@ -42,12 +46,16 @@ class App extends Component {
       <div className="App">
         <AppHeader />
         <main>
-          <ProductsComponent
+          <FeaturesComponent
             selected={this.state.selected}
             updateFeature={this.updateFeature}
             features={this.props.features}
+            // currency={USCurrencyFormat}
           />
-          <CartComponent selected={this.state.selected} />
+          <CartComponent
+            selected={this.state.selected}
+            // currency={USCurrencyFormat}
+          />
         </main>
       </div>
     );

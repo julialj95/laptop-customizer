@@ -1,24 +1,29 @@
-import React, { Component } from "react";
+import React from "react";
+import slugify from "slugify";
+import FeatureItem from "./FeatureItem";
+import FEATURES from "./FeaturesStore";
 
-class CustomizationSegment extends Component {
+class FeaturesSegment extends React.Component {
   render() {
-    const { itemHash, feature, item } = this.props;
-    return (
-      <div key={itemHash} className="feature__item">
-        <input
-          type="radio"
-          id={itemHash}
-          className="feature__option"
-          name={slugify(feature)}
-          checked={item.name === this.state.selected[feature].name}
-          onChange={(e) => this.updateFeature(feature, item)}
+    const { updateFeature, selected, feature } = this.props;
+    console.log(feature);
+    const options = FEATURES[feature].map((item) => {
+      const itemHash = slugify(JSON.stringify(item));
+      console.log(itemHash);
+      return (
+        <FeatureItem
+          itemHash={itemHash}
+          onChange={updateFeature}
+          itemName={item.name}
+          selected={selected}
+          feature={feature}
+          item={item}
         />
-        <label htmlFor={itemHash} className="feature__label">
-          {item.name} ({USCurrencyFormat.format(item.cost)})
-        </label>
-      </div>
-    );
+      );
+    });
+
+    return <>{options}</>;
   }
 }
 
-export default CustomizationSegment;
+export default FeaturesSegment;

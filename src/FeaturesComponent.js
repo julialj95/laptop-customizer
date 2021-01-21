@@ -1,24 +1,27 @@
 import React from "react";
-import ProductsSegment from "./FeaturesSegment";
-import slugify from "slugify";
+import FeaturesSegment from "./FeaturesSegment";
+import FEATURES from "./FeaturesStore";
 
-class ProductsComponent extends React.Component {
+class FeaturesComponent extends React.Component {
   render() {
-    const features = Object.keys(this.props.features).map((feature, idx) => {
-      const options = this.props.features[feature].map((item) => {
-        const itemHash = slugify(JSON.stringify(item));
-        return (
-          <ProductsSegment
-            id={itemHash}
-            featureHash={feature + "-" + idx}
-            name={slugify(feature)}
-            checked={item.name === this.state.selected[feature].name}
-            onChange={(e) => this.updateFeature(feature, item)}
-          />
-        );
-      });
-    });
+    const { selected, updateFeature } = this.props;
 
+    const features = Object.keys(FEATURES).map((feature, idx) => {
+      const featureHash = feature + "-" + idx;
+      return (
+        <fieldset className="feature" key={featureHash}>
+          <legend className="feature__name">
+            <h3>{feature}</h3>
+          </legend>
+          <FeaturesSegment
+            selected={selected}
+            onChange={updateFeature}
+            feature={feature}
+            // features={features}
+          />
+        </fieldset>
+      );
+    });
     return (
       <form className="main__form">
         <h2>Customize your laptop</h2>
@@ -27,6 +30,5 @@ class ProductsComponent extends React.Component {
     );
   }
 }
-export default ProductsComponent;
 
-// use map here
+export default FeaturesComponent;

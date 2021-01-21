@@ -1,25 +1,22 @@
-import React, { Component } from "react";
+import React from "react";
 import CartSegment from "./CartSegment";
 import CartTotal from "./CartTotal";
 
-const USCurrencyFormat = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
-
-class CartComponent extends Component {
+class CartComponent extends React.Component {
   render() {
-    const summary = Object.keys(props.selected).map((feature, idx) => {
+    const { selected } = this.props;
+    const summary = Object.keys(selected).map((feature, idx) => {
       const featureHash = feature + "-" + idx;
-      const selectedOption = this.state.selected[feature];
+      const selectedOption = selected[feature];
+
       return (
-        <div className="summary__option" key={featureHash}>
-          <div className="summary__option__label">{feature} </div>
-          <div className="summary__option__value">{selectedOption.name}</div>
-          <div className="summary__option__cost">
-            {USCurrencyFormat.format(selectedOption.cost)}
-          </div>
-        </div>
+        <CartSegment
+          selected={selected}
+          name={selectedOption.name}
+          cost={selectedOption.cost}
+          featureHash={featureHash}
+          feature={feature}
+        />
       );
     });
 
@@ -27,13 +24,11 @@ class CartComponent extends Component {
       <section className="main__summary">
         <h2>Your cart</h2>
         {summary}
-        <CartSegment features={props.features} />
         <CartTotal />
       </section>
     );
   }
 }
-
 export default CartComponent;
 
-// use map here
+//send down currency prop//
